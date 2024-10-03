@@ -53,8 +53,14 @@ app.use(
     })
 );
 
+
 app.use(passUserToView);
 
+app.get("/", (req, res) => {
+  res.render("index.ejs", {
+    user: req.session.user,
+  });
+});
 //use controller js to maager /auth router
 app.use('/auth', authController);
 app.use(isSignedIn);
@@ -65,11 +71,6 @@ app.use('/users/:userId/bookapp', bookappController);
 // Declare Routes and Routers 
 ///////////////////////
 // INDUCES - Index, New, Delete, Update, Create, Edit, Show
-app.get("/", (req, res) => {
-  res.render("index.ejs", {
-    user: req.session.user,
-  });
-});
 
 
 ///////////////////////////
