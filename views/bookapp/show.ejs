@@ -7,7 +7,12 @@
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>enach book show Page</h1>
-    
+    <h1>Book: <%= currentBook.name %></h1>
+    <p>Author: <%= currentBook.author %></p>
+    <p>Category: <%= currentBook.category %></p>
+    <p>Download: <a href="<%= currentBook.link %>" target="_blank" >Link</a></p>
+    <p>Your comment: <%= currentBook.comment %></p>
+    <a href="/users/<%= user._id %>/bookapp/<%= currentBook._id %>/edit">Edit</a>
+    <a>Delete</a>
 </body>
 </html>

@@ -11,10 +11,12 @@
     <ul>
         <% books.forEach((book)=>{ %>
           <li>
+            <div>
+              <a href="/users/<%= user._id %>/bookapp/<%= book._id %>">
+                  <%= book.name %> by <%= book.author %>
+              </a>
+            </div>
             <!-- Add a link around each application, directing to the 'show' page -->
-            <a href="/users/<%= user._id %>/bookapp/<%= books._id %>">
-                <%= book.name %> by <%= book.author %>
-            </a>
           </li>
         <% }) %>
     </ul>

@@ -61,4 +61,38 @@ router.get("/:bookId", async (req,res) => {
     }
 })
 
+
+
+router.get("/:bookId/edit", async (req,res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const currentBook = currentUser.books.id(req.params.bookId)
+    res.render("bookapp/edit.ejs", {
+      currentBook: currentBook,
+    });
+    console.log(currentBook, currentUser)
+  } catch(error) {
+    console.log(error);
+    res.redirect('/')
+  }
+})
+
+
+router.put("/:bookId", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const currentBook = currentUser.books.id(req.params.bookId);
+    currentBook.set(req.body);
+    await currentUser.save();
+    res.redirect(
+      `/users/${currentUser._id}/bookapp/${req.params.bookId}`
+    );
+  } catch(error) {
+    console.log(error);
+    res.redirect('/')
+  }
+})
+
+
+
 module.exports = router;
