@@ -8,6 +8,17 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Your book list</h1>
+    <ul>
+        <% books.forEach((book)=>{ %>
+          <li>
+            <!-- Add a link around each application, directing to the 'show' page -->
+            <a href="/users/<%= user._id %>/bookapp/<%= books._id %>">
+                <%= book.name %> by <%= book.author %>
+            </a>
+          </li>
+        <% }) %>
+    </ul>
+
 
     <a href="/users/<%= user._id %>/bookapp/new">Add a new book</a>
     

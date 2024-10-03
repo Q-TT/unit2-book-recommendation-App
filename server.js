@@ -23,7 +23,7 @@ const authController = require('./controllers/auth.js');
 const bookappController = require("./controllers/bookapp.js")
 
 //set up PORT 3000
-const port = process.env.PORT ? process.env.PORT : "4000";
+const port = process.env.PORT ? process.env.PORT : "3000";
 
 //set up mongoose database
 mongoose.connect(process.env.MONGODB_URI);
@@ -65,13 +65,11 @@ app.use('/users/:userId/bookapp', bookappController);
 // Declare Routes and Routers 
 ///////////////////////
 // INDUCES - Index, New, Delete, Update, Create, Edit, Show
-app.get("/", (req,res)=>{
-    res.render('index.ejs', {
-      user: req.session.user,
-    })
-})
-
-
+app.get("/", (req, res) => {
+  res.render("index.ejs", {
+    user: req.session.user,
+  });
+});
 
 
 ///////////////////////////
