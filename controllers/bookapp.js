@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const mongoose = require("mongoose")
 
 const User = require('../models/user.js');
 const session = require('express-session');
@@ -60,6 +61,24 @@ router.get("/:bookId", async (req,res) => {
         res.redirect('/')
     }
 })
+
+
+router.delete('/:bookId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const currentBook = currentUser.books.id(req.params.bookId)
+    //delete
+    currentBook.deleteOne();
+    //save
+    await currentUser.save();
+    //redirect
+    res.redirect(`/users/${currentUser._id}/bookapp`);
+  } catch (error) {
+    // If any errors, log them and redirect back home
+    console.log(error);
+    res.redirect('/')
+  }
+});
 
 
 
