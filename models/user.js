@@ -14,12 +14,12 @@ const bookSchema = new mongoose.Schema({
         required: true,
         enum: ['Fiction', 'Non-Fiction', 'Novel', 'Romance', "Children's book", "Biography", "Autobiography", "Mystery", "Art", "History", "Politics", "Thrillers", "Academic","Other"],
     },
+    link: {
+        type: String,
+    },
     comment: {
         type: String,
         required: true
-    },
-    link: {
-        type: String,
     },
     likes: {
         type: Array,

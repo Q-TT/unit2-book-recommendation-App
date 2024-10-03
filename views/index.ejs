@@ -7,8 +7,14 @@
 </head>
 <body>
     <%- include('./partials/_navbar.ejs') %>
-    <h1>Welcome To Astrid's Book Recommendation App!</h1>
+    <h1>Welcome back to Astrid's book recommendation App!</h1>
+    
     <h3>An app that allows you to make a post on recommending or criticizing a book and see other people’s recommendations or critics.</h3>
+
+    <% if(user) { %>
+        <p><a href="/users/:userId/bookapp">Go to my book list</a></p>
+    <% } %>
+    
     
 </body>
 </html>

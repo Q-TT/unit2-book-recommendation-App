@@ -13,11 +13,17 @@ const methodOverride = require("method-override");
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
+const isSignedIn = require('./middleware/is-sign-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
+
+
 //import dataSchema
 const User = require('./models/user.js');
+const authController = require('./controllers/auth.js');
+const bookappController = require("./controllers/bookapp.js")
 
 //set up PORT 3000
-const port = process.env.PORT ? process.env.PORT : "3000";
+const port = process.env.PORT ? process.env.PORT : "4000";
 
 //set up mongoose database
 mongoose.connect(process.env.MONGODB_URI);
@@ -47,83 +53,24 @@ app.use(
     })
 );
 
+app.use(passUserToView);
+
+//use controller js to maager /auth router
+app.use('/auth', authController);
+app.use(isSignedIn);
+app.use('/users/:userId/bookapp', bookappController);
+
 
 ///////////////////////
 // Declare Routes and Routers 
 ///////////////////////
 // INDUCES - Index, New, Delete, Update, Create, Edit, Show
 app.get("/", (req,res)=>{
-    res.render('index.ejs')
+    res.render('index.ejs', {
+      user: req.session.user,
+    })
 })
 
-app.get("/auth/sign-in", (req,res) => {
-    res.render("auth/sign-in.ejs")
-})
-
-app.get("/auth/sign-up", (req,res) => {
-    res.render("auth/sign-up.ejs")
-})
-
-
-app.post("/auth/sign-up", async (req,res) => {
-    try {
-        const userExist = await User.findOne({ username: req.body.username });
-        
-        if (userExist) {
-          return res.send('Username already taken, please try another one.');
-        }
-
-        if (req.body.password !== req.body.confirmPassword) {
-          return res.send('Password and Confirm Password must match');
-        }
-      
-        //Hash the password before sending to the database
-        const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-        req.body.password = hashedPassword;
-      
-        // All ready to create the new user!
-        await User.create(req.body);
-      
-        res.redirect('/auth/sign-in');
-
-      } catch (error) {
-        console.log(error);
-        res.redirect('/');
-      }
-})
-
-app.post("/auth/sign-in", async (req,res) => {
-    try {
-        // First, get the user from the database
-        const userInDatabase = await User.findOne({ username: req.body.username });
-        if (!userInDatabase) {
-          return res.send('Login failed. Please try again.');
-        }
-      
-        // There is a user! Time to test their password with bcrypt
-        const validPassword = bcrypt.compareSync(
-          req.body.password,
-          userInDatabase.password
-        );
-        if (!validPassword) {
-          return res.send('Login failed. Please try again.');
-        }
-      
-        // There is a user AND they had the correct password. Time to make a session!
-        // Avoid storing the password, even in hashed format, in the session
-        // If there is other data you want to save to `req.session.user`, do so here!
-        req.session.user = {
-          username: userInDatabase.username,
-          _id: userInDatabase._id
-        };
-      
-        res.redirect('/');
-      } catch (error) {
-        console.log(error);
-        res.redirect('/');
-      }
-
-})
 
 
 
