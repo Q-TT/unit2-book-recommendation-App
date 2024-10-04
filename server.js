@@ -56,11 +56,36 @@ app.use(
 
 app.use(passUserToView);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const allUsers = await User.find({}).populate("books")
+  const allBooks =[]
+  const homepageBooks = []
+
+  allUsers.forEach((user) => {
+    allBooks.push(user.books)
+  })
+  // console.log(allBooks)
+
+  allBooks.forEach((collection) => {
+    
+    collection.forEach((book) => {
+      const homepageBook = {
+        name: book.name,
+        category: book.category,
+        comment: book.comment,
+      }
+      homepageBooks.push(homepageBook)   
+
+    })
+  })
+  console.log(homepageBooks)
+
   res.render("index.ejs", {
     user: req.session.user,
+    homepageBooks
   });
 });
+
 //use controller js to maager /auth router
 app.use('/auth', authController);
 app.use(isSignedIn);

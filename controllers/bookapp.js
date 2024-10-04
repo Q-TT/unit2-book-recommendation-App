@@ -55,7 +55,6 @@ router.get("/:bookId", async (req,res) => {
         res.render("bookapp/show.ejs", {
             currentBook: currentBook,
         });
-        console.log(currentBook, currentUser)
     } catch(error) {
         console.log(error);
         res.redirect('/')
