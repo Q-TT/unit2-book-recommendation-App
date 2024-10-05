@@ -120,6 +120,27 @@ body {
     background: #6c1bf7;
     transition: all 0.2s ease;
   }
-  
+
+
+  .signin, .signup {
+    font-size: 25px;
+    text-align: justify;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .title {
+    color: white;
+  }
+
+  .signup__button, .signin__button {
+    font-size: 20px;
+    color: #18013f;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 30px;
+    margin-left: 10px;
+  }
   
 
