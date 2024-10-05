@@ -7,10 +7,13 @@
     <title>Home Page</title>
 </head>
 <body>
-    <%- include('./partials/_navbar.ejs') %>
+    <div class="radio-inputs">
+        <%- include('./partials/_navbar.ejs') %>
+    </div>
+
     <h1>Welcome back to the book recommendation App!</h1>
     
-    <h3>An app that allows you to make a post on recommending or criticizing a book and see other people’s recommendations or critics.</h3>
+    <h3>An app that allows you to find download resources, make a post on recommending or criticizing a book and see other people’s recommendations or critics.</h3>
     
     <h4> Find yourown books </h4>
     <div class="search">
@@ -22,22 +25,26 @@
         </form>
     </div>
     <hr class="line">
+    <div>
+        <% if(user) { %>
+            <a href="/users/<%= user._id%>/bookapp"> 
+                <butto class="gotolistBut">👉 GO TO MY LIST</button>
+            </a>
+        <% } %>
+    </div>
 
-    <% if(user) { %>
-        <p><a href="/users/<%= user._id%>/bookapp">Go to my book list</a></p>
-    <% } %>
     <br>
     <h4>Other people's recommendataion</h4>
     <div>
         <% homepageBooks.forEach((homepageBook)=>{ %>
             <div class="bookcard">
-                Book name: <%= homepageBook.name %>
+                <strong>Book name:</strong> <%= homepageBook.name %>
                 <br>
-                Book category: <%= homepageBook.category %>
+                <strong>Book category:</strong> <%= homepageBook.category %>
                 <br>
-                Book comment: <%= homepageBook.comment %>
+                <strong>Book comment:</strong> <%= homepageBook.comment %>
                 <br> 
-                Likes: <%= homepageBook.likes.length %>
+                <strong>Likes: </strong> <%= homepageBook.likes.length %>
                 <br> 
                 <div>
                     <% if(user && homepageBook.likes.includes(user.username)) { %>

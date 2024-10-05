@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+/* nav bar */
+.radio-inputs {
+    margin: auto;
+    border-radius:60px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;  
+    width: fit-content;    
+    font-size: 20px;
+  }
+.radio {
+    flex: 1 1 auto;
+    margin-left: 40px; 
+    margin-right: 40px;  
+  }
+  
+
+
+
 /* homepage */
 h1, h3, h4{
     color: #fff;
@@ -18,6 +38,20 @@ body {
     background-color: #18013f;
 }
 
+
+.gotolistBut {
+    width:fit-content;
+    height: fit-content;
+    padding: 12px;
+    position: relative;
+    font-size: 25px;
+    border-radius: 60px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background: #6c1bf7;
+    transition: all 0.2s ease;  
+}
 /* From Uiverse.io by joe-watson-sbf */ 
 .search {
     text-align: justify;
@@ -58,7 +92,7 @@ body {
 
 .line{
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
   
 .bookcard {
@@ -87,51 +121,5 @@ body {
     transition: all 0.2s ease;
   }
   
-  #likeBut {
-    transform: scale(0.96);
-  }
   
-  #likeBut:before,
-  #likeBut:after {
-    position: absolute;
-    content: "";
-    width: 150%;
-    left: 50%;
-    height: 100%;
-    transform: translateX(-50%);
-    z-index: -1000;
-    background-repeat: no-repeat;
-  }
-  
-  #likeBut:hover:before {
-    top: -70%;
-    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
-    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
-      10% 10%, 18% 18%;
-    background-position: 50% 120%;
-    animation: greentopBubbles 0.6s ease;
-  }
-  
-  
-  #likeBut:hover::after {
-    bottom: -70%;
-    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
-    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
-    background-position: 50% 0%;
-    animation: greenbottomBubbles 0.6s ease;
-  }
-  
+
