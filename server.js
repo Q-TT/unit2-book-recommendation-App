@@ -24,7 +24,7 @@ const bookappController = require("./controllers/bookapp.js")
 const searchController = require("./controllers/search.js")
 
 //set up PORT 3000
-const port = process.env.PORT ? process.env.PORT : "3000";
+// const port = process.env.PORT ? process.env.PORT : "3000";
 
 //set up mongoose database
 mongoose.connect(process.env.MONGODB_URI);
@@ -146,6 +146,6 @@ app.use('/search', searchController);
 ///////////////////////////
 // Server Listener
 ///////////////////////////
-app.listen(port, () => {
-  console.log(`The express app is ready on port ${port}!`);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
