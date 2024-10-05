@@ -9,17 +9,17 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Add a new book</h1>
-    <form action="/users/<%= user._id%>/bookapp/new" method="POST">
-        <label for="name">Name:</label>
+    <form class="newForm" action="/users/<%= user._id%>/bookapp/new" method="POST">
+        <label class="title" for="name">Name:</label>
         <input type="text" name="name" id="name" required>
         
-        <label for="author">Author:</label>
+        <label class="title" for="author">Author:</label>
         <input type="text" name="author" id="author" required>
 
-        <label for="link">Link:</label>
+        <label class="title" for="link">Link:</label>
         <input type="text" name="link" id="link">
         
-        <label for="category">Category:</label>
+        <label class="title" for="category">Category:</label>
         <select id="category" name="category">
           <option value="Fiction">Fiction</option>
           <option value="Non-Fiction">Non-Fiction</option>
@@ -37,12 +37,12 @@
           <option value="Other">Other</option>
         </select>
         
-        <label for="comment">Comments:</label>
+        <label class="title" for="comment">Comments:</label>
         <textarea name="comment" id="comment"></textarea>
         
     
         <!-- Add a submit button -->
-        <button type="submit">Add Book</button>
+        <button id="addBut" type="submit">Add Book</button>
       </form>
 
 </body>

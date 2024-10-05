@@ -12,20 +12,15 @@
     <ul>
         <% books.forEach((book)=>{ %>
           <li>
-            <div>
+            <div class="mybookcard">
              <p><%= book.name %> by <%= book.author %></p>
+             <a id= "detailsBut" href="/users/<%= user._id %>/bookapp/<%= book._id %>">See details</a>
             </div>
-            <div>
-              <a href="/users/<%= user._id %>/bookapp/<%= book._id %>">See details</a>
-            </div>
-            
-            <!-- Add a link around each application, directing to the 'show' page -->
           </li>
         <% }) %>
     </ul>
-
-
-    <a href="/users/<%= user._id %>/bookapp/new">Add a new book</a>
+    <br> <br>
+    <a class="addNewBook" href="/users/<%= user._id %>/bookapp/new">Add a new book</a>
     
 </body>
 </html>

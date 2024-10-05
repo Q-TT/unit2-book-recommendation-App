@@ -121,7 +121,7 @@ body {
     transition: all 0.2s ease;
   }
 
-
+/* sign in and up page */
   .signin, .signup {
     font-size: 25px;
     text-align: justify;
@@ -142,5 +142,94 @@ body {
     border-radius: 30px;
     margin-left: 10px;
   }
-  
 
+
+  .mybookcard {
+    width: 95%;
+    height: fit-content;
+    border-radius: 30px;
+    border-color: #283618;
+    background: #e4e0ff;
+    box-shadow: 5px 5px 10px #7862f8be,
+               -5px -5px 10px #ffffff;
+    margin-top: 40px;
+    padding: 20px;
+  }
+
+  #detailsBut {
+    width:fit-content;
+    height: fit-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    position: relative;
+    font-size: 15px;
+    border-radius: 60px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background: #6c1bf7;
+    transition: all 0.2s ease;
+  }
+  
+  .addNewBook {
+    width:fit-content;
+    height: fit-content;
+    padding: 12px;
+    margin: 30px;
+    position: relative;
+    font-size: 25px;
+    border-radius: 60px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background: #6c1bf7;
+    transition: all 0.2s ease;  
+}
+
+/* show page */
+#editBut, #deleteBut, #updateBut, #addBut {
+    width:fit-content;
+    height: fit-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 10px;
+    position: relative;
+    font-size: 20px;
+    border-radius: 60px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background: #6c1bf7;
+    transition: all 0.2s ease;
+  }
+
+/* edit page */
+.editForm {
+    flex-wrap: wrap;
+    text-align: justify;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    font-size:20px ;
+  }
+
+/* new page */
+.newForm {
+    flex-wrap: wrap;
+    text-align: justify;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    font-size:20px ;
+  }
+
+
+  
