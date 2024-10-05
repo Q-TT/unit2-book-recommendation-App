@@ -21,6 +21,7 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 const User = require('./models/user.js');
 const authController = require('./controllers/auth.js');
 const bookappController = require("./controllers/bookapp.js")
+const searchController = require("./controllers/search.js")
 
 //set up PORT 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
@@ -54,7 +55,7 @@ app.use(
 );
 
 
-app.use(passUserToView);
+
 
 app.get("/", async (req, res) => {
   const allUsers = await User.find({}).populate("books")
@@ -78,7 +79,7 @@ app.get("/", async (req, res) => {
 
     })
   })
-  console.log(homepageBooks)
+  // console.log(homepageBooks)
 
   res.render("index.ejs", {
     user: req.session.user,
@@ -86,10 +87,14 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.use(passUserToView);
 //use controller js to maager /auth router
 app.use('/auth', authController);
-app.use(isSignedIn);
+// app.use(isSignedIn); //!isSignIn here
 app.use('/users/:userId/bookapp', bookappController);
+
+//!search feature from here
+app.use('/search', searchController);
 
 
 ///////////////////////

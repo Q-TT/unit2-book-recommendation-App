@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Home Page</title>
 </head>
 <body>
@@ -10,18 +12,26 @@
     <h1>Welcome back to the book recommendation App!</h1>
     
     <h3>An app that allows you to make a post on recommending or criticizing a book and see other people’s recommendations or critics.</h3>
+    
+    <form method="post" action = "/search">
+        <label for="keyWordInput">Book:</label>
+        <br>
+        <input type="text" id="keyWordInput" name="keyWordInput">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
     <div>
         <% homepageBooks.forEach((homepageBook)=>{ %>
-            <di>
+            <div>
                 Book name: <%= homepageBook.name %>
                 <br>
                 Book category: <%= homepageBook.category %>
                 <br>
                 Book comment: <%= homepageBook.comment %>
                 <br> <br>
-            </di>
-        <% }) %>
-                  
+            </div>
+        <% }) %>            
     </div>
 
     <% if(user) { %>
