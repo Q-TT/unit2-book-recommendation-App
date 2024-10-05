@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script defer src="../js/app.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Home Page</title>
 </head>
 <body>
@@ -14,17 +12,25 @@
     
     <h3>An app that allows you to make a post on recommending or criticizing a book and see other people’s recommendations or critics.</h3>
     
-    <form method="post" action = "/search">
-        <label for="keyWordInput">Find a book:</label>
-        <input type="text" id="keyWordInput" name="keyWordInput">
-        <input type="submit" value="Search">
-    </form>
+    <h4> Find yourown books </h4>
+    <div class="search">
+        <form method="post" action = "/search">
+            <!-- <label class="searchTitle" for="keyWordInput">Find a book:</label>
+            <br> -->
+            <input type="text" id="keyWordInput" name="keyWordInput">
+            <input class="search__button" type="submit" value="🔍">
+        </form>
+    </div>
+    <hr class="line">
 
+    <% if(user) { %>
+        <p><a href="/users/<%= user._id%>/bookapp">Go to my book list</a></p>
+    <% } %>
     <br>
-
+    <h4>Other people's recommendataion</h4>
     <div>
         <% homepageBooks.forEach((homepageBook)=>{ %>
-            <div>
+            <div class="bookcard">
                 Book name: <%= homepageBook.name %>
                 <br>
                 Book category: <%= homepageBook.category %>
@@ -33,31 +39,27 @@
                 <br> 
                 Likes: <%= homepageBook.likes.length %>
                 <br> 
-            </div>
-            <div>
-                <% if(user && homepageBook.likes.includes(user.username)) { %>
-                    <form method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>?_method=PUT">
-                    <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
-                    <input type="submit" value="👎">
-                    </form>
-                
-                <% } else if (user) { %>
-                    <form method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>">
-                    <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
-                    <input type="submit" value="👍">
-                    </form>
-
-                <% } %>
-
-
+                <div>
+                    <% if(user && homepageBook.likes.includes(user.username)) { %>
+                        <form id="likeBut" method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>?_method=PUT">
+                        <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
+                        <input id="likeBut" type="submit" value="👎 DISLIKE">
+                        </form>
+                    
+                    <% } else if (user) { %>
+                        <form id="likeBut" method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>">
+                        <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
+                        <input id="likeBut" type="submit" value="👍 LIKE">
+                        </form>
+    
+                    <% } %>
+                </div>
             </div>
             <br> <br>
         <% }) %>            
     </div>
 
-    <% if(user) { %>
-        <p><a href="/users/<%= user._id%>/bookapp">Go to my book list</a></p>
-    <% } %>
+
     
     
 </body> 

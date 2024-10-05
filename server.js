@@ -23,8 +23,11 @@ const authController = require('./controllers/auth.js');
 const bookappController = require("./controllers/bookapp.js")
 const searchController = require("./controllers/search.js")
 
+
 //set up PORT 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
+
+const path = require('path');
 
 //set up mongoose database
 mongoose.connect(process.env.MONGODB_URI);
@@ -48,12 +51,13 @@ app.use(morgan('dev'));
 // Session allows the creation and storage of the session data used for authentication or user preferences. 
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: true,
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
     })
-);
-
+  );
+  
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 
