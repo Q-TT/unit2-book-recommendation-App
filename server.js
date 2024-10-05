@@ -64,29 +64,69 @@ app.get("/", async (req, res) => {
 
   allUsers.forEach((user) => {
     allBooks.push(user.books)
-  })
-  // console.log(allBooks)
-
-  allBooks.forEach((collection) => {
-    
-    collection.forEach((book) => {
+    user.books.forEach((book) => {
       const homepageBook = {
+        _id: book._id,
+        owner: user._id,
         name: book.name,
         category: book.category,
         comment: book.comment,
+        likes: book.likes,
       }
       homepageBooks.push(homepageBook)   
-
     })
-  })
-  // console.log(homepageBooks)
 
+
+
+  })
+  // console.log(allBooks)
+
+
+  console.log(homepageBooks)
   res.render("index.ejs", {
     user: req.session.user,
     homepageBooks
   });
 });
 
+
+app.post("/like/:userId/:bookId", async (req,res)=>{
+  try {
+    const user = await User.findById(req.params.userId)
+    
+    const book = user.books.filter((book)=>{
+      return book._id.toString() === req.params.bookId
+    })
+  
+    book[0].likes.push(req.session.user.username)
+    user.save()
+      res.redirect('/');
+    } catch (error) {
+      console.log(error);
+      res.redirect('/')
+    }
+
+  })
+
+app.put("/like/:userId/:bookId", async (req,res)=>{
+  try {
+    const user = await User.findById(req.params.userId)
+    
+    const book = user.books.filter((book)=>{
+      return book._id.toString() === req.params.bookId
+    })
+    const index = book[0].likes.indexOf(req.session.user)
+  
+    book[0].likes.splice(index,1)
+    user.save()
+      res.redirect('/');
+    } catch (error) {
+      console.log(error);
+      res.redirect('/')
+    }
+
+  })
+  
 app.use(passUserToView);
 //use controller js to maager /auth router
 app.use('/auth', authController);

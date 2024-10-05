@@ -30,7 +30,26 @@
                 Book category: <%= homepageBook.category %>
                 <br>
                 Book comment: <%= homepageBook.comment %>
-                <br>
+                <br> 
+                Likes: <%= homepageBook.likes.length %>
+                <br> 
+            </div>
+            <div>
+                <% if(user && homepageBook.likes.includes(user.username)) { %>
+                    <form method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>?_method=PUT">
+                    <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
+                    <input type="submit" value="👎">
+                    </form>
+                
+                <% } else if (user) { %>
+                    <form method="POST" action = "/like/<%= homepageBook.owner %>/<%= homepageBook._id%>">
+                    <input type="hidden" name="likes" id="likes" value="<%= user.username %>">
+                    <input type="submit" value="👍">
+                    </form>
+
+                <% } %>
+
+
             </div>
             <br> <br>
         <% }) %>            
