@@ -79,7 +79,7 @@ app.get("/", async (req, res) => {
 
 
   })
-  // console.log(allBooks)
+  
 
 
   console.log(homepageBooks)
