@@ -45,7 +45,11 @@ This app will also allow gest or AUU users to browse other people's posts, and w
 
 ### Technologies Used: 
 * JavaScript 
-* HTML 
+* EJS
+* Express
+* Node.js
+* MongooseDB
+* Google API
 * CSS
 * Figma
 
