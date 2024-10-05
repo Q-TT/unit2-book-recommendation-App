@@ -6,6 +6,7 @@
     <title>Search result</title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Search results page</h1>
     <% bookList.forEach((book) => { %>
         <p>Book name: <%= book.title %></p>

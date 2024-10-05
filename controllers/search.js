@@ -17,17 +17,24 @@ router.use(express.urlencoded({extended:true}))
 
 
 router.post("/", async(req,res) => {
-    const keyWordInput = req.body.keyWordInput
-    let books = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWordInput}&download=epub&key=AIzaSyCL39E_gR6PUTtBz29ZHXs_v7iX7Ze3DVQ`)
-    let booksData = await books.json()
-    let bookList =[]
-    booksData.items.forEach((item) => {
-        bookList.push(item.volumeInfo)
-    })
+    try {
+        const keyWordInput = req.body.keyWordInput
+        let books = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWordInput}&download=epub&key=AIzaSyCL39E_gR6PUTtBz29ZHXs_v7iX7Ze3DVQ`)
+        let booksData = await books.json()
+        let bookList =[]
+        booksData.items.forEach((item) => {
+            bookList.push(item.volumeInfo)
+        })
+    
+    
+        res.render("search/searchResults.ejs", {
+            bookList
+        });
 
-    res.render("search/searchResults.ejs", {
-        bookList
-    });
+    } catch(error) {
+        console.log(error);
+        res.redirect('/')
+      }
 })
 
 module.exports = router;
