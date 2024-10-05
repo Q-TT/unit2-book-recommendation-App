@@ -19,7 +19,7 @@ router.use(express.urlencoded({extended:true}))
 router.post("/", async(req,res) => {
     try {
         const keyWordInput = req.body.keyWordInput
-        let books = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWordInput}&download=epub&key=AIzaSyCL39E_gR6PUTtBz29ZHXs_v7iX7Ze3DVQ`)
+        let books = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWordInput}&download=epub&key=${process.env.API_KEY}`)
         let booksData = await books.json()
         let bookList =[]
         booksData.items.forEach((item) => {
