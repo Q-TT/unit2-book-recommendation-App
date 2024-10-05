@@ -75,9 +75,6 @@ app.get("/", async (req, res) => {
       }
       homepageBooks.push(homepageBook)   
     })
-
-
-
   })
   // console.log(allBooks)
 
@@ -146,6 +143,6 @@ app.use('/search', searchController);
 ///////////////////////////
 // Server Listener
 ///////////////////////////
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
